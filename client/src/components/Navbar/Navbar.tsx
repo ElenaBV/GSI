@@ -27,7 +27,10 @@ export default function Navbar(): JSX.Element {
       await axios.get("http://localhost:3000/logout", {
         withCredentials: true,
       });
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      
+    }
   };
 
   return (
@@ -38,7 +41,7 @@ export default function Navbar(): JSX.Element {
           backgroundColor: "rgba(0, 8, 152, 1.00)",
         }}
       >
-        <Container mmaxWidth="xl">
+        <Container maxWidth="xl">
           <Toolbar className={style.nav} disableGutters>
             {user?.email ? (
               <div className={style.tool}>

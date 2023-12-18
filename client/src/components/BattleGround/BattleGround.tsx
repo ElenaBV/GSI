@@ -19,8 +19,8 @@ const GameBoard = () => {
   const timeRef = useRef();
 
   const [disabledQuestion, setDisabledQuestion] = useState([])
-  const [timer, setTimer] = useState(30);
-  const [timerId, setTimerId] = useState(0);
+  // const [timer, setTimer] = useState(30);
+  // const [timerId, setTimerId] = useState(0);
 
 
   const dispatch = useDispatch();
@@ -51,7 +51,7 @@ const GameBoard = () => {
     setSelectedTheme(theme);
   };
 
-  const handleQuestSelect = (elem) => {
+  const handleQuestSelect = (elem, e) => {
     setSelectedQuestion(elem);
     setShowModal(true);
     setActiveQuestion(elem);
@@ -59,14 +59,16 @@ const GameBoard = () => {
     setIsAnswerSubmitted(false);
     setIsAnswerCorrect(false);
     setDisabledQuestion(disabledQuestion.filter((el) => el.quest !== elem.quest))
-    setTimer(30);
-    clearTimeout(timerId);
-    const newTimerId = setTimeout(() => {
-      handleAnswerSubmit(elem);
-      handleCloseModal();
-    }, 30000);
+    console.log('**********', e.target.parentElement);
+    e.target.parentElement.style.background = '#f2de6e';
+    // setTimer(30);
+    // clearTimeout(timerId);
+    // const newTimerId = setTimeout(() => {
+    //   handleAnswerSubmit(elem);
+    //   handleCloseModal();
+    // }, 30000);
 
-    setTimerId(newTimerId); //
+    // setTimerId(newTimerId); //
   };
 
   const handleCloseModal = () => {
@@ -86,7 +88,7 @@ const GameBoard = () => {
       setIsAnswerCorrect(true);
       setScore(score + elem.price);
       dispatch({ type: 'score', payload: score + elem.price});
-      clearTimeout(timerId);
+      // clearTimeout(timerId);
       // timeRef.current.style.display = 'none';
     } else {
       setIsAnswerCorrect(false);
@@ -110,25 +112,25 @@ const GameBoard = () => {
     }
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer((prevTimer) => {
-        if (prevTimer === 0) {
-          handleAnswerSubmit(activeQuestion);
-          handleCloseModal();
-          return 30;
-        } else {
-          return prevTimer - 1;
-        }
-      });
-    }, 1000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setTimer((prevTimer) => {
+  //       if (prevTimer === 0) {
+  //         handleAnswerSubmit(activeQuestion);
+  //         handleCloseModal();
+  //         return 30;
+  //       } else {
+  //         return prevTimer - 1;
+  //       }
+  //     });
+  //   }, 1000);
 
-    return () => clearInterval(interval);
-  }, [activeQuestion, handleAnswerSubmit, handleCloseModal]);
-
+  //   return () => clearInterval(interval);
+  // }, []);
+  // [activeQuestion, handleAnswerSubmit, handleCloseModal]
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100vh', background: 'url("./public/igra.png") center center / cover no-repeat' }}>
-      <Card style={{ width: '70%', padding: '20px', marginTop: '20px', overflow: 'auto', background: 'rgba(0, 8, 152, 1.00)' }}>
+      <Card style={{ width: '90%', padding: '20px', marginTop: '20px', overflow: 'auto', background: 'rgba(0, 8, 152, 1.00)' }}>
         <h1 style={{ textAlign: 'center', marginBottom: '20px', color: '#ffff' }}>Своя игра</h1>
         <CardContent>
 
@@ -153,14 +155,14 @@ const GameBoard = () => {
                     {questions
                       .filter((el) => el.categoryId === theme.id)
                       .map((elem) => (
-                        <Card className="question-card" key={elem.id} style={{ background: '#000673', minWidth: '108px', height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid #f2de6e', margin: '5px', whiteSpace: 'normal' }}>
-                          <Button onClick={() => handleQuestSelect(elem)} disabled={!disabledQuestion.includes(elem)} style={{ color: '#f2de6e', fontSize: '20px' }}>
+                        <Card className="question-card" key={elem.id} style={{ background: '#000673', minWidth: '200px', height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid #f2de6e', margin: '5px', whiteSpace: 'normal' }}>
+                          <Button onClick={(e) => handleQuestSelect(elem, e)} disabled={!disabledQuestion.includes(elem)} style={{ color: '#f2de6e', fontSize: '20px' }}>
                             {elem.price}
                           </Button>
                           <Dialog open={showModal && activeQuestion === elem} onClose={handleCloseModal}>
                             <div className={style.module} style={{ padding: '70px', background: '#f2de6e', color: 'rgba(0, 8, 152, 1.00)', fontSize: '20px', display: 'flex', flexDirection: 'column', gap: '20px', fontWeight: 'bolder' }}>
                               <Typography className={style.qText}>{elem.quest}</Typography>
-                              <div ref={timeRef} className='time'>{timer} секунд</div>
+                              {/* <div ref={timeRef} className='time'>{timer} секунд</div> */}
                               {isAnswerSubmitted ? (
                                 isAnswerCorrect ? (
                                   <Typography variant="h6" style={{ color: 'green' }}>Правильно!</Typography>

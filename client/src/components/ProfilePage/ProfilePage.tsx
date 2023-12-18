@@ -38,7 +38,7 @@ console.log("score",score)
 
 
   return (
-    <Paper elevation={3} style={{ padding: '46px', marginTop: '100px', margin: 'auto', maxWidth: 800, border: '2px solid black' }}>
+    <Paper elevation={3} style={{ padding: '46px', margin: '100px 200px', maxWidth: 800, border: '2px solid black' }}>
       <Typography variant="h5" component="h3" style={{ padding: '16px',  margin: 'auto'}}>
         Личный кабинет
       </Typography>
