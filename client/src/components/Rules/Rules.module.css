@@ -1,0 +1,17 @@
+.rules{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    gap: 25px;
+    font-family: monospace !important;
+   
+
+}
+.bodytext{
+    width: 50%;
+    line-height: 30px;
+    display: flex;
+    text-align: justify;
+    
+}
