@@ -23,7 +23,7 @@ console.log("score",score)
       });
       setProfileData(response.data);
     } catch (error) {
-      console.error('Error fetching profile data:', error);
+      console.log(error);
     }
   };
 
@@ -38,7 +38,7 @@ console.log("score",score)
 
 
   return (
-    <Paper elevation={3} style={{ padding: '16px', marginTop: '30px', margin: 'auto', maxWidth: 600 }}>
+    <Paper elevation={3} style={{ padding: '46px', marginTop: '100px', margin: 'auto', maxWidth: 800, border: '2px solid black' }}>
       <Typography variant="h5" component="h3" style={{ padding: '16px',  margin: 'auto'}}>
         Личный кабинет
       </Typography>

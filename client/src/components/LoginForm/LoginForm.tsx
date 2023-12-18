@@ -11,7 +11,7 @@ const LoginForm: React.FC = () => {
     password: "",
     email: "",
   });
-
+const navigate = useNavigate();
   // const navigate = useNavigate()
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -28,6 +28,7 @@ const LoginForm: React.FC = () => {
     })
       .then((result) => {
         if (result.ok) {
+          navigate('/game');
           return result.json();
         } else {
           throw new Error("Ошибка аутентификации");

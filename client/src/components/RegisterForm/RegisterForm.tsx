@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import style from "../LoginForm/LoginForm.module.css"
 import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm: React.FC = () => {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ const RegisterForm: React.FC = () => {
     password: '',
     email: '',
   });
-
+  const navigate = useNavigate();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -25,6 +26,7 @@ const RegisterForm: React.FC = () => {
       body: JSON.stringify(formData)
     })
       .then(async result => {
+        navigate('/rules');
         return await result.json()
       })
       .then(data => dispatch({
