@@ -7,9 +7,9 @@ import { RootState } from '../../store/store';
 
 const ProfilePage: React.FC = () => {
   const user = useSelector((state: RootState) => state.userReducer.user);
-  const score = useSelector((state: RootState) => state.scoreReducer.user);
+  const score = useSelector((state: RootState) => state.scoreReducer.score);
   const [profileData, setProfileData] = useState<any>(null);
-
+console.log("score",score)
   const formattedTime = (isoTime) => {
     const date = new Date(isoTime);
     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
@@ -29,7 +29,7 @@ const ProfilePage: React.FC = () => {
 
   useEffect(() => {
     fetchProfileData();
-  }, [user.email]);
+  }, [user.email,score]);
 
   // useEffect(() => {
   // }, [profileData.gamesData]);
