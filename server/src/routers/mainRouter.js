@@ -5,7 +5,9 @@ const session = require('express-session');
 
 const router = express.Router();
 
-const { User, Category, Game, Question } = require('../../db/models');
+const {
+  User, Category, Game, Question,
+} = require('../../db/models');
 
 router.use(
   session({
@@ -13,13 +15,13 @@ router.use(
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false },
-  })
+  }),
 );
 
 router.post('/register', async (req, res) => {
   try {
     const { login, password, email } = req.body;
-    console.log(req.body)
+    console.log(req.body);
     const hash = await bcrypt.hash(password, 10);
     const user = await User.findOne({ where: { email } });
     if (user) {
@@ -35,7 +37,7 @@ router.post('/register', async (req, res) => {
       email: newUser.email,
       login: newUser.login,
     };
-    console.log(newUser)
+    console.log(newUser);
     res
       .status(201)
       .json({ message: 'Пользователь успешно зарегистрирован', user: newUser });
@@ -92,14 +94,16 @@ router.get('/profile', async (req, res) => {
   try {
     const { email } = req.query;
     const user = await User.findOne({ where: { email } });
-    console.log(req.query);
+    console.log('req.query req.query', req.query);
     const userGames = await Game.findAndCountAll({
       where: { userId: user.id },
     });
+    console.log('userGamesuserGamesuserGames', userGames);
+
     const totalGames = userGames.count;
     const totalPoints = userGames.rows.reduce(
       (acc, game) => acc + game.points,
-      0
+      0,
     );
 
     const allGames = await Game.findAll({
@@ -144,7 +148,8 @@ router.post('/start', async (req, res) => {
       userId: req.session.user.id,
       points: score,
     });
-    res.status(200).json({ game: newGame });
+    console.log("newGame newGame",newGame)
+    res.json({ game: newGame });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Ошибка создания игры' });

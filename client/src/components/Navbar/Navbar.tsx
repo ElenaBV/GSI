@@ -60,7 +60,7 @@ export default function Navbar(): JSX.Element {
                 >
                   ПРАВИЛА
                 </Typography>
-                <Typography
+                {/* <Typography
                   variant="h6"
                   noWrap
                   component="a"
@@ -79,7 +79,9 @@ export default function Navbar(): JSX.Element {
                   }}
                 >
                     Начать игру
-                </Typography>
+                </Typography> */}
+
+                 
                 <Typography
                   variant="h6"
                   noWrap
@@ -159,6 +161,7 @@ export default function Navbar(): JSX.Element {
                 >
                   ПРАВИЛА
                 </Typography>
+                
                 <Typography
                   variant="h6"
                   noWrap
