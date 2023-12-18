@@ -85,6 +85,8 @@ const GameBoard = () => {
        setIsAnswerCorrect(true);
        setScore(score + elem.price)
        dispatch({ type: 'score', payload: score + elem.price});
+       clearTimeout(timerId);
+       
 
     } else {
       setIsAnswerCorrect(false);
