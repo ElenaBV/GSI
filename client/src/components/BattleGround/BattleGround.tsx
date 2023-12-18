@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import style from './battle.module.css'
 
+let interval;
+
 const GameBoard = () => {
   const [themes, setThemes] = useState([]);
   const [questions, setQuestions] = useState([]);
@@ -16,15 +18,13 @@ const GameBoard = () => {
   const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
   const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
-  const timeRef = useRef();
 
+  const [count, setCount] = useState(30);
+ 
   const [disabledQuestion, setDisabledQuestion] = useState([])
   // const [timer, setTimer] = useState(30);
   // const [timerId, setTimerId] = useState(0);
-
-
   const dispatch = useDispatch();
-
   const [score, setScore] = useState(0);
 
   useEffect(() => {
@@ -45,8 +45,6 @@ const GameBoard = () => {
       });
   }, []);
 
-  
-
   const handleThemeSelect = (theme) => {
     setSelectedTheme(theme);
   };
@@ -61,6 +59,9 @@ const GameBoard = () => {
     setDisabledQuestion(disabledQuestion.filter((el) => el.quest !== elem.quest))
     console.log('**********', e.target.parentElement);
     e.target.parentElement.style.background = '#f2de6e';
+    interval = setInterval(() => {
+      setCount((count) => count - 1);
+    }, 1000);
     // setTimer(30);
     // clearTimeout(timerId);
     // const newTimerId = setTimeout(() => {
@@ -71,6 +72,12 @@ const GameBoard = () => {
     // setTimerId(newTimerId); //
   };
 
+  // useEffect(() => {
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, []);
+
   const handleCloseModal = () => {
     setShowModal(false);
     setIsAnswerSubmitted(true);
@@ -79,17 +86,15 @@ const GameBoard = () => {
   const handleUserAnswerChange = (event) => {
     setUserAnswer(event.target.value);
   };
-
-
   
   const handleAnswerSubmit = (elem) => {
+    
     // clearTimeout(timerId);
     if(userAnswer.toLowerCase() === activeQuestion.answer.toLowerCase()){
       setIsAnswerCorrect(true);
       setScore(score + elem.price);
       dispatch({ type: 'score', payload: score + elem.price});
       // clearTimeout(timerId);
-      // timeRef.current.style.display = 'none';
     } else {
       setIsAnswerCorrect(false);
       setScore(score - elem.price)
@@ -97,6 +102,8 @@ const GameBoard = () => {
     }
     setIsAnswerSubmitted(true);
     setAnsweredQuestionsCount(answeredQuestionsCount + 1);
+    clearInterval(interval);
+    setCount((prev) => prev - prev + 30);
   };
 
   const handleStartGame = async () => {
@@ -162,7 +169,7 @@ const GameBoard = () => {
                           <Dialog open={showModal && activeQuestion === elem} onClose={handleCloseModal}>
                             <div className={style.module} style={{ padding: '70px', background: '#f2de6e', color: 'rgba(0, 8, 152, 1.00)', fontSize: '20px', display: 'flex', flexDirection: 'column', gap: '20px', fontWeight: 'bolder' }}>
                               <Typography className={style.qText}>{elem.quest}</Typography>
-                              {/* <div ref={timeRef} className='time'>{timer} секунд</div> */}
+                              <div className='time'>{count} секунд</div>
                               {isAnswerSubmitted ? (
                                 isAnswerCorrect ? (
                                   <Typography variant="h6" style={{ color: 'green' }}>Правильно!</Typography>
