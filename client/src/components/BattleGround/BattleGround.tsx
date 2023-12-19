@@ -138,6 +138,13 @@ const GameBoard = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100vh', background: 'url("./public/igra.png") center center / cover no-repeat' }}>
       <Card style={{ width: '90%', padding: '20px', marginTop: '20px', overflow: 'auto', background: 'rgba(0, 8, 152, 1.00)' }}>
+      <div >
+        {answeredQuestionsCount >= 0 && (
+          <Button onClick={handleStartGame} component={Link} to="/profile" variant="contained" color="primary">
+            Завершить игру
+          </Button>
+        )}
+      </div>
         <h1 style={{ textAlign: 'center', marginBottom: '20px', color: '#ffff' }}>Своя игра</h1>
         <CardContent>
 
@@ -195,13 +202,13 @@ const GameBoard = () => {
           </table>
         </CardContent>
       </Card>
-      <div style={{ marginTop: '20px' }}>
+      {/* <div style={{ marginTop: '20px' }}>
         {answeredQuestionsCount >= 1 && (
           <Button onClick={handleStartGame} component={Link} to="/profile" variant="contained" color="primary">
             Завершить игру
           </Button>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };

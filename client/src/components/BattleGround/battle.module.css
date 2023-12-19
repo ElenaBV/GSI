@@ -5,3 +5,21 @@
 .qText {
     font-size: 25px !important;
 }
+
+a{
+    
+    align-self: center !important;
+    margin-left: 16px !important;
+    padding: 10px 15px !important;
+    background-color: rgba(0, 8, 152, 1.00) !important;
+    color: #f2de6e !important;
+    transition: background 0.5s ease-in-out !important;
+
+}
+
+a:hover{
+
+    background-color:  #f2de6e !important;
+    color:  rgba(0, 8, 152, 1.00) !important;
+
+}

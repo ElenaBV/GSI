@@ -3,15 +3,50 @@
     flex-direction: column;
     align-items: center;
     margin-top: 100px;
-    gap: 25px;
+    gap: 40px;
     font-family: monospace !important;
+    color: rgba(0, 8, 152, 1.00)!important;
+    font-size: larger;
    
+
+}
+.h4{
+    color: #f2de6e !important;
+    font-weight: bold !important;
+    text-align: center;
+    font-size: 50px !important;
+    height: 40px;
+    width: 30vw;
+    
 
 }
 .bodytext{
     width: 50%;
     line-height: 30px;
     display: flex;
+    flex-direction: column;
     text-align: justify;
+    font-size: 25px !important;
     
+}
+ul{
+    text-align: justify;
+    margin-left: -27px;
+}
+
+button{
+    align-self: center !important;
+    font-size: 20px !important;
+    padding: 10px 15px  !important;
+    background-color: rgba(0, 8, 152, 1.00) !important;
+    color: #f2de6e !important;
+    transition: background 0.5s ease-in-out !important;
+
+}
+
+button:hover{
+
+    background-color:  #f2de6e !important;
+    color:  rgba(0, 8, 152, 1.00) !important;
+
 }

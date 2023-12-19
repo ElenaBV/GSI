@@ -28,7 +28,7 @@ const navigate = useNavigate();
     })
       .then((result) => {
         if (result.ok) {
-          navigate('/game');
+          navigate('/rules');
           return result.json();
         } else {
           throw new Error("Ошибка аутентификации");

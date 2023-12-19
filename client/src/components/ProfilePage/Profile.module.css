@@ -1,0 +1,19 @@
+.paper{
+    padding: 46px;
+    margin: 100px auto;
+    max-width: 800px;
+    border: 3px solid rgba(0, 8, 152, 1.00) !important;
+    color:  rgba(0, 8, 152, 1.00) !important;
+    gap: 20px !important;
+   
+    font-size: 20px;
+  
+}
+h3{
+    color: #f2de6e !important;
+    font-weight: bold !important;
+    text-align: center;
+    font-size: 30px !important;
+    height: 40px;
+    width: 30vw;
+}

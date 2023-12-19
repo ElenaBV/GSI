@@ -15,28 +15,23 @@ module.exports = {
     },
     {
       id: 3,
-      category: 'Автомобили',
+      category: 'Кино',
       createdAt: new Date(),
       updatedAt: new Date(),
     },
     {
       id: 4,
-      category: 'Одежда',
+      category: 'Цитаты Джесона Стэтхема',
       createdAt: new Date(),
       updatedAt: new Date(),
     },
     {
       id: 5,
-      category: 'Гарри-Поттер',
+      category: 'Олег',
       createdAt: new Date(),
       updatedAt: new Date(),
     },
-    {
-      id: 6,
-      category: 'Пословицы / Поговорки / Выражения',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    }], {});
+   ], {});
   },
 
   async down(queryInterface, Sequelize) {

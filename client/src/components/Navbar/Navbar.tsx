@@ -63,28 +63,7 @@ export default function Navbar(): JSX.Element {
                 >
                   ПРАВИЛА
                 </Typography>
-                {/* <Typography
-                  variant="h6"
-                  noWrap
-                  component="a"
-                  href="/game"
-                  onClick={handleLogout}
-                  sx={{
-                    mr: 2,
-                    display: { xs: "none", md: "flex" },
-                    fontFamily: "monospace",
-                    fontWeight: 700,
-                    letterSpacing: ".3rem",
-                    color: "#f2de6e",
-                    textDecoration: "none",
-                    marginRight: 20,
-                    marginLeft: "auto",
-                  }}
-                >
-                    Начать игру
-                </Typography> */}
-
-                 
+            
                 <Typography
                   variant="h6"
                   noWrap
@@ -150,7 +129,7 @@ export default function Navbar(): JSX.Element {
                   variant="h6"
                   noWrap
                   component="a"
-                  href="/rules"
+                  href="/"
                   sx={{
                     mr: 2,
                     display: { xs: "none", md: "flex" },
