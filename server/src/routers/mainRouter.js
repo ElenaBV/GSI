@@ -148,7 +148,7 @@ router.post('/start', async (req, res) => {
       userId: req.session.user.id,
       points: score,
     });
-    console.log("newGame newGame",newGame)
+    console.log('newGame newGame', newGame);
     res.json({ game: newGame });
   } catch (error) {
     console.error(error);
