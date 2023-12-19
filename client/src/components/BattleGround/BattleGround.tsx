@@ -278,18 +278,19 @@ const GameBoard = () => {
                                 {count} секунд
                                 {isAnswerSubmitted && elem.id === 23 && (
                                   <Dialog
-                                    style={{ width: '800px' }}
+                                  style={{ maxWidth: '100%' }}
+                                  className={style.vidos}
                                     open={open}
                                     onClose={handleClose}
                                     aria-labelledby="alert-dialog-title"
                                     aria-describedby="alert-dialog-description"
                                   >
-                                    <DialogContent style={{ width: '800px' }}>
+                                    <DialogContent style={{ width: '90%' }}>
                                       <video
                                         autoPlay
                                         loop
                                         poster="https://assets.codepen.io/6093409/river.jpg"
-                                        style={{ width: '800px' }}
+                                        className={style.vidos}
                                       >
                                         <source src="/1.mp4" type="video/mp4" />
                                       </video>

@@ -6,8 +6,8 @@
     font-size: 25px !important;
 }
 
-a{
-    
+a {
+
     align-self: center !important;
     margin-left: 16px !important;
     padding: 10px 15px !important;
@@ -17,9 +17,15 @@ a{
 
 }
 
-a:hover{
+a:hover {
 
-    background-color:  #f2de6e !important;
-    color:  rgba(0, 8, 152, 1.00) !important;
+    background-color: #f2de6e !important;
+    color: rgba(0, 8, 152, 1.00) !important;
 
+}
+
+
+
+.vidos {
+    max-width: 100% !important;
 }
