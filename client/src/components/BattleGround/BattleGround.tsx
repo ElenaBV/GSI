@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, memo } from 'react';
 import axios from 'axios';
-import { Card, CardContent, Typography, Button, Dialog, TextField } from '@mui/material';
+import { Card, CardContent, Typography, Button, Dialog, TextField, DialogTitle, DialogActions, DialogContent, DialogContentText } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import style from './battle.module.css'
@@ -18,8 +18,9 @@ const GameBoard = () => {
   const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
   const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
-
+  const [open, setOpen] = React.useState(true);
   const [count, setCount] = useState(30);
+ console.log(questions);
  
   const [disabledQuestion, setDisabledQuestion] = useState([])
   // const [timer, setTimer] = useState(30);
@@ -85,6 +86,18 @@ const GameBoard = () => {
 
   const handleUserAnswerChange = (event) => {
     setUserAnswer(event.target.value);
+  };
+
+  
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    console.log('GOOOPPAAAA');
+    
+    setOpen(false);
   };
   
   const handleAnswerSubmit = (elem) => {
@@ -176,8 +189,32 @@ const GameBoard = () => {
                           <Dialog open={showModal && activeQuestion === elem} onClose={handleCloseModal}>
                             <div className={style.module} style={{ padding: '70px', background: '#f2de6e', color: 'rgba(0, 8, 152, 1.00)', fontSize: '20px', display: 'flex', flexDirection: 'column', gap: '20px', fontWeight: 'bolder' }}>
                               <Typography className={style.qText}>{elem.quest}</Typography>
-                              <div className='time'>{count} секунд</div>
-                              {isAnswerSubmitted ? (
+                              <div className='time'>{count} секунд {elem.id} !!!!!!
+                              { isAnswerSubmitted && elem.id === 23 && 
+                                                        <Dialog style={{ width: '800px' }}
+                                                        open={open}
+                                                        onClose={handleClose}
+                                                        aria-labelledby="alert-dialog-title"
+                                                        aria-describedby="alert-dialog-description"
+                                                      >
+                                                        <DialogContent style={{ width: '800px' }}>
+                                                          <video autoPlay loop poster="https://assets.codepen.io/6093409/river.jpg" style={{ width: '800px' }}>
+                                  <source
+                                    src="/1.mp4"
+                                    type="video/mp4"
+                                  />
+                                </video>
+                                                        </DialogContent>
+                                                        <DialogActions>
+                                                          <Button onClick={handleClose}>Закрыть</Button>
+                                                          <Button onClick={handleClose} autoFocus>
+                                                            Смириться
+                                                          </Button>
+                                                        </DialogActions>
+                                                      </Dialog>                        
+                              }
+                              </div>
+                              {isAnswerSubmitted ? ( 
                                 isAnswerCorrect ? (
                                   <Typography variant="h6" style={{ color: 'green' }}>Правильно!</Typography>
                                 ) : (
