@@ -35,8 +35,6 @@ const GameBoard = () => {
   const timerRef = useRef();
 
   const [disabledQuestion, setDisabledQuestion] = useState([]);
-  // const [timer, setTimer] = useState(30);
-  // const [timerId, setTimerId] = useState(0);
   const dispatch = useDispatch();
   const [score, setScore] = useState(0);
 
@@ -86,7 +84,6 @@ const GameBoard = () => {
     setDisabledQuestion(
       disabledQuestion.filter((el) => el.quest !== elem.quest)
     );
-    console.log('**********', e.target.parentElement);
     e.target.parentElement.style.background = '#f2de6e';
     intervalRef.current = setInterval(() => {
       setCount((count) => count - 1);
@@ -96,6 +93,8 @@ const GameBoard = () => {
   const handleCloseModal = () => {
     setShowModal(false);
     setIsAnswerSubmitted(true);
+    console.log('++handleCloseModal++',isAnswerSubmitted);
+    
   };
 
   const handleUserAnswerChange = (event) => {
@@ -107,12 +106,15 @@ const GameBoard = () => {
   };
 
   const handleClose = () => {
-    console.log('GOOOPPAAAA');
-
     setOpen(false);
   };
 
   const handleAnswerSubmit = (elem) => {
+    console.log(elem);
+    console.log(isAnswerSubmitted);
+    setIsAnswerSubmitted(true);
+    setOpen(true);
+    console.log('****handleAnswerSubmit*****',isAnswerSubmitted);
     // clearTimeout(timerId);
     if (userAnswer.toLowerCase() === activeQuestion.answer.toLowerCase()) {
       setIsAnswerCorrect(true);
@@ -124,11 +126,12 @@ const GameBoard = () => {
       setScore(score - elem.price);
       dispatch({ type: 'score', payload: score - elem.price });
     }
-    setIsAnswerSubmitted(true);
+    
     setAnsweredQuestionsCount(answeredQuestionsCount + 1);
     clearInterval(intervalRef.current);
     timerRef.current.style.display = 'none';
     setCount((prev) => prev - prev + 30);
+    
   };
 
   const handleStartGame = async () => {
@@ -148,22 +151,6 @@ const GameBoard = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setTimer((prevTimer) => {
-  //       if (prevTimer === 0) {
-  //         handleAnswerSubmit(activeQuestion);
-  //         handleCloseModal();
-  //         return 30;
-  //       } else {
-  //         return prevTimer - 1;
-  //       }
-  //     });
-  //   }, 1000);
-
-  //   return () => clearInterval(interval);
-  // }, []);
-  // [activeQuestion, handleAnswerSubmit, handleCloseModal]
   return (
     <div
       style={{
@@ -276,6 +263,57 @@ const GameBoard = () => {
                               </Typography>
                               <div className="time" ref={timerRef}>
                                 {count} секунд
+                                {isAnswerSubmitted && elem.id === 25 && (
+                                  <Dialog
+                                  style={{ maxWidth: '100%' }}
+                                  className={style.vidos}
+                                    open={open}
+                                    onClose={handleClose}
+                                    aria-labelledby="alert-dialog-title"
+                                    aria-describedby="alert-dialog-description"
+                                  >
+                                    <DialogContent style={{ width: '90%' }}>
+                                      <img src="/oleg.JPG" alt="Oleg" />
+                                    </DialogContent>
+                                    <DialogActions>
+                                      <Button onClick={handleClose}>
+                                        Закрыть
+                                      </Button>
+                                      <Button onClick={handleClose} autoFocus>
+                                        Смириться
+                                      </Button>
+                                    </DialogActions>
+                                  </Dialog>
+                                )}
+                                {isAnswerSubmitted && elem.id === 22 && (
+                                  <Dialog
+                                  style={{ maxWidth: '100%' }}
+                                  className={style.vidos}
+                                    open={open}
+                                    onClose={handleClose}
+                                    aria-labelledby="alert-dialog-title"
+                                    aria-describedby="alert-dialog-description"
+                                  >
+                                    <DialogContent style={{ width: '90%' }}>
+                                      <video
+                                        autoPlay
+                                        loop
+                                        poster="https://assets.codepen.io/6093409/river.jpg"
+                                        className={style.vidos}
+                                      >
+                                        <source src="/OlegDance.mp4" type="video/mp4" />
+                                      </video>
+                                    </DialogContent>
+                                    <DialogActions>
+                                      <Button onClick={handleClose}>
+                                        Закрыть
+                                      </Button>
+                                      <Button onClick={handleClose} autoFocus>
+                                        Смириться
+                                      </Button>
+                                    </DialogActions>
+                                  </Dialog>
+                                )}
                                 {isAnswerSubmitted && elem.id === 23 && (
                                   <Dialog
                                   style={{ maxWidth: '100%' }}
