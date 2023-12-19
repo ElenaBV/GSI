@@ -285,6 +285,35 @@ const GameBoard = () => {
                                     </DialogActions>
                                   </Dialog>
                                 )}
+                                {isAnswerSubmitted && elem.id === 21 && (
+                                  <Dialog
+                                  style={{ maxWidth: '100%' }}
+                                  className={style.vidos}
+                                    open={open}
+                                    onClose={handleClose}
+                                    aria-labelledby="alert-dialog-title"
+                                    aria-describedby="alert-dialog-description"
+                                  >
+                                    <DialogContent style={{ width: '90%' }}>
+                                      <video
+                                        autoPlay
+                                        loop
+                                        poster="https://assets.codepen.io/6093409/river.jpg"
+                                        className={style.vidos}
+                                      >
+                                        <source src="/33.mp4" type="video/mp4" />
+                                      </video>
+                                    </DialogContent>
+                                    <DialogActions>
+                                      <Button onClick={handleClose}>
+                                        Закрыть
+                                      </Button>
+                                      <Button onClick={handleClose} autoFocus>
+                                        Смириться
+                                      </Button>
+                                    </DialogActions>
+                                  </Dialog>
+                                )}
                                 {isAnswerSubmitted && elem.id === 22 && (
                                   <Dialog
                                   style={{ maxWidth: '100%' }}

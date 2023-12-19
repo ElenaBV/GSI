@@ -55,7 +55,7 @@ const ProfilePage: React.FC = () => {
       <Typography
         variant="h5"
         component="h3"
-        style={{ padding: '16px', margin: 'auto' }}
+        style={{ padding: '16px', margin: 'auto', marginBottom: '100px' }}
       >
         Личный кабинет
       </Typography>
