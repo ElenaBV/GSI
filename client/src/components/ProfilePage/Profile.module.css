@@ -1,6 +1,6 @@
 .paper{
     padding: 46px;
-    margin: 100px auto;
+    margin: 100px auto !important;
     max-width: 800px;
     border: 3px solid rgba(0, 8, 152, 1.00) !important;
     color:  rgba(0, 8, 152, 1.00) !important;
@@ -13,7 +13,7 @@ h3{
     color: #f2de6e !important;
     font-weight: bold !important;
     text-align: center;
-    font-size: 30px !important;
+    font-size: 50px !important;
     height: 40px;
     width: 30vw;
 }
